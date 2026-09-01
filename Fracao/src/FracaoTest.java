@@ -21,7 +21,15 @@ public class FracaoTest {
         assertEquals(5, z.getNumerador());
         assertEquals(6, z.getDenominador());
         assertTrue(z.getSinal());
+
+        // 1/6 + 1/6 = 1/3
+        x = new Fracao(1, 6);
+        z = x.somar(x);
+        assertEquals(1, z.getNumerador());
+        assertEquals(3, z.getDenominador());
+        assertTrue(z.getSinal());
     }
+
 
     @Test
     public void testarMultiplicacao() {
@@ -32,6 +40,20 @@ public class FracaoTest {
         assertEquals(4, z.getNumerador());
         assertEquals(21, z.getDenominador());
         assertFalse(z.getSinal());
+
+        // (2/7) * (5/2) = 10/14 (ou 5/7 simplificado)
+        x = new Fracao(2, 7);
+        y = new Fracao(5, 2);
+        z = x.multiplicar(y, true);
+        assertEquals(5, z.getNumerador());
+        assertEquals(7, z.getDenominador());
+        assertTrue(z.getSinal());
+
+        z = x.multiplicar(y);
+        assertEquals(10, z.getNumerador());
+        assertEquals(14, z.getDenominador());
+        assertTrue(z.getSinal());
+
     }
 
     @Test
@@ -50,7 +72,7 @@ public class FracaoTest {
         assertEquals(3, z.getDenominador());
         assertFalse(z.getSinal());
     }
-    
+
     @Test
     public void testarValorNumerico() {
         assertEquals(0.5, new Fracao(1, 2).getValorNumerico());
@@ -74,6 +96,7 @@ public class FracaoTest {
         assertEquals("-15", (new Fracao(15, -1)).toString());
 
         assertEquals("20/40", (new Fracao(20, 40)).toString());
+        assertEquals("40/20", (new Fracao(40, 20)).toString());
     }
 
 }
