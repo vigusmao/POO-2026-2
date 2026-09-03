@@ -10,7 +10,7 @@ public class Pessoa {
 
     public void setNome(String novoNome) {
         if (novoNome.length() > 30) {
-            throw new RuntimeException("Nome muito grande!!!")
+            throw new RuntimeException("Nome muito grande!!!");
         }
         this.nome = nome;
     }
