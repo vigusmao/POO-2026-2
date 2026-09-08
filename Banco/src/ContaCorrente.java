@@ -7,7 +7,7 @@ public class ContaCorrente {
     private static final Random GERADOR = new Random();
 
     // atributos
-    private final long cpf;
+    private final Pessoa correntista;
     private float saldo;
     private String nome;
     private int agencia;
@@ -19,13 +19,17 @@ public class ContaCorrente {
     public static int idBanco;  // todas as contas serão do mesmo banco!!!!
     private static int quantContasCriadas = 0;
 
-    public ContaCorrente(long cpf) {
+    public ContaCorrente(Pessoa correntista) {
         quantContasCriadas++;
 
-        this.cpf = cpf;
+        this.correntista = correntista;  // associação (objeto pré-existente)
         this.saldo = quantContasCriadas == 100 ? 1050 : 50;  // saldo inicial (brinde)
         this.senha = GERADOR.nextInt(100000);
-        this.extrato = new ArrayList<>();
+        this.extrato = new ArrayList<>();  // composição
+    }
+
+    public long getCpf() {
+        return correntista.getCpf();
     }
 
     public void sacar(float valor) {

@@ -1,11 +1,19 @@
 public class Pessoa {
 
-    private String nome;
+    protected String nome;
     private final long cpf;
 
     public Pessoa(String nome, long cpf) {
         this.nome = nome;
         this.cpf = cpf;
+    }
+
+    public long getCpf() {
+        return cpf;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public void setNome(String novoNome) {
