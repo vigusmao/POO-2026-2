@@ -43,10 +43,17 @@ class VeterinariaTest {
         assertEquals(1, bichosDoCliente.size());
         assertTrue(bichosDoCliente.contains(dog));
 
+        cat1.setCpfDoDono(3765327);
+        vet.cuidar(cat1);
+
         cat2.setCpfDoDono(111);  // outro bicho do mesmo dono
         vet.cuidar(cat2);
+        
+        vet.cuidar(dog);  // cuidou de novo do bicho de cliente que já existia
+
         assertEquals(2, bichosDoCliente.size());
         assertTrue(bichosDoCliente.contains(dog));
         assertTrue(bichosDoCliente.contains(cat2));
+        assertFalse(bichosDoCliente.contains(cat1));
     }
 }
