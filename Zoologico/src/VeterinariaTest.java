@@ -12,7 +12,7 @@ class VeterinariaTest {
 
     @Before  // roda antes de cada teste
     public void setUp() {
-        Veterinaria vet = new Veterinaria();
+        vet = new Veterinaria();
 
         dog = new Cachorro("dog1");
         dog.setCpfDoDono(1234);
@@ -48,9 +48,10 @@ class VeterinariaTest {
 
         cat2.setCpfDoDono(111);  // outro bicho do mesmo dono
         vet.cuidar(cat2);
-        
+
         vet.cuidar(dog);  // cuidou de novo do bicho de cliente que já existia
 
+        bichosDoCliente = vet.obterPetsDoCliente(111);
         assertEquals(2, bichosDoCliente.size());
         assertTrue(bichosDoCliente.contains(dog));
         assertTrue(bichosDoCliente.contains(cat2));
