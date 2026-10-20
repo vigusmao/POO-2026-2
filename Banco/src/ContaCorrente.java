@@ -32,15 +32,23 @@ public class ContaCorrente {
         return correntista.getCpf();
     }
 
-    public void sacar(float valor) {
+    public void sacar(float valor) throws SaldoInsuficienteException,
+                                          SenhaInvalidaException {
         if (saldo + LIMITE_CHEQUE_ESPECIAL < valor) {
             // O correto seria lançar uma exceção; veremos mais à frente!
             // no momento, simplesmente não faremos nada
             extrato.add("Tentativa de saque muito elevado");
+            throw new SaldoInsuficienteException(valor - saldo);
+        } else if (!senhaOk()) {
+            throw new SenhaInvalidaException();
         } else {
             saldo = saldo - valor;
         }
         extrato.add(String.format("Saque de R$%.2f efetuado.", valor));
+    }
+
+    public boolean senhaOk() {
+        return true;  // ToDo
     }
 
     public void transferir(float valor, ContaCorrente contaDestino) {

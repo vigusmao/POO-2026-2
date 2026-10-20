@@ -1,3 +1,5 @@
+package dominio;
+
 public class Dalmata extends Cachorro {
 
     int poder;

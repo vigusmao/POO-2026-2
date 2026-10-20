@@ -1,3 +1,7 @@
+import dominio.Animal;
+import dominio.Cachorro;
+import dominio.Gato;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -8,25 +12,35 @@ public class Main {
 
     private static final Random random = new Random();
 
+    public static Animal obterAnimal() {
+        if (random.nextFloat() < 0.5) {
+            return new Gato("sem nome");
+        }
+        return new Cachorro("caozinho");
+    }
+
     public static void main(String[] args) {
 
+        Animal c = obterAnimal();
+        Gato g = (Gato) c;
+        System.out.println(g.emitirSom(10));
 //        testarArrayList();
 //        testarHashSet();
-        testarHashMap();
+//        testarHashMap();
 //
-//        Veterinaria petFeliz = new Veterinaria();
+//        dominio.Veterinaria petFeliz = new dominio.Veterinaria();
 //
-//        Cachorro cao = new Cachorro("Cãozinho Xuxo");
-//        Dalmata toto = new Dalmata("Toto", 5);
-//        Gato rex = new Gato("Rex");
+//        dominio.Cachorro cao = new dominio.Cachorro("Cãozinho Xuxo");
+//        dominio.Dalmata toto = new dominio.Dalmata("Toto", 5);
+//        dominio.Gato rex = new dominio.Gato("Rex");
 //
-//          Animal bichoGenerico;
-////        bichoGenerico = new Animal();  // falharia na compilação
-//          bichoGenerico = new Cachorro("qualquer");
+//          dominio.Animal bichoGenerico;
+////        bichoGenerico = new dominio.Animal();  // falharia na compilação
+//          bichoGenerico = new dominio.Cachorro("qualquer");
 //
 ////        bichoGenerico.dormir();  // funciona
 ////        bichoGenerico.emitirSom(10);  // funciona
-////        bichoGenerico.morder();  // não funciona; do meu ponto de vista, é um Animal
+////        bichoGenerico.morder();  // não funciona; do meu ponto de vista, é um dominio.Animal
 //
 //        petFeliz.cuidar(cao);
 //        petFeliz.cuidar(toto);
@@ -40,7 +54,7 @@ public class Main {
         // adiciona N cachorros ao array
         int N = 64000;
         for (int i = 1; i <= N; i++) {
-            Cachorro cachorro = new Cachorro("Cachorro " + i);
+            Cachorro cachorro = new Cachorro("dominio.Cachorro " + i);
             cachorro.setCpfDoDono(random.nextInt(1000000));
             bichos.add(cachorro);
         }
@@ -68,7 +82,7 @@ public class Main {
         // adiciona N cachorros ao array
         int N = 64000;
         for (int i = 1; i <= N; i++) {
-            Cachorro cachorro = new Cachorro("Cachorro " + i);
+            Cachorro cachorro = new Cachorro("dominio.Cachorro " + i);
             long cpfDoDono = random.nextInt(1000000);
             cachorro.setCpfDoDono(cpfDoDono);
             bichoPorCpfDoDono.put(cpfDoDono, cachorro);
@@ -94,7 +108,7 @@ public class Main {
             ArrayList<Animal> bichos, long cpfDesejado) {
 
 //        for (int i = 0; i < bichos.size(); i++) {
-//            Animal bicho = bichos.get(i);
+//            dominio.Animal bicho = bichos.get(i);
 //            if (bicho.getCpfDoDono() == cpfDesejado) {
 //                return true;
 //            }

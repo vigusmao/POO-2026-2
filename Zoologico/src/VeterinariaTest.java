@@ -1,10 +1,15 @@
+import dominio.Animal;
+import dominio.Cachorro;
+import dominio.Gato;
+import dominio.Veterinaria;
 import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class VeterinariaTest {
+public class VeterinariaTest {
     private Veterinaria vet;
     private Cachorro dog;
     private Gato cat1;
@@ -21,7 +26,7 @@ class VeterinariaTest {
         cat1.setCpfDoDono(5678);
 
         cat2 = new Gato("cat2");
-        cat2.setCpfDoDono(1234);
+        cat2.setCpfDoDono(111);
     }
 
     public void testarOrdemAtendimento() {
@@ -35,6 +40,7 @@ class VeterinariaTest {
         assertEquals(cat1, vet.obterAnimalAtendido(3));
     }
 
+    @Test
     public void testarPetsDoCliente() {
         dog.setCpfDoDono(111);
         vet.cuidar(dog);
@@ -50,11 +56,24 @@ class VeterinariaTest {
         vet.cuidar(cat2);
 
         vet.cuidar(dog);  // cuidou de novo do bicho de cliente que já existia
+        vet.cuidar(dog);  // cuidou de novo do bicho de cliente que já existia
+        vet.cuidar(dog);  // cuidou de novo do bicho de cliente que já existia
+        vet.cuidar(dog);  // cuidou de novo do bicho de cliente que já existia
+        vet.cuidar(dog);  // cuidou de novo do bicho de cliente que já existia
+
+        Cachorro x = dog;
+        vet.cuidar(x);
+
+        Cachorro y = new Cachorro("dog1");
+        y.setCpfDoDono(111);
+        vet.cuidar(y);
 
         bichosDoCliente = vet.obterPetsDoCliente(111);
         assertEquals(2, bichosDoCliente.size());
         assertTrue(bichosDoCliente.contains(dog));
         assertTrue(bichosDoCliente.contains(cat2));
+
+
         assertFalse(bichosDoCliente.contains(cat1));
     }
 }
