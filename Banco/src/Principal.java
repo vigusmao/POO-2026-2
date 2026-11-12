@@ -1,9 +1,12 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Principal {
 
     public static void main(String[] args) {
 
-        ContaCorrente contaDoFulano = new ContaCorrente(5425);
-        ContaCorrente contaDaCicrana = new ContaCorrente(2132);
+        ContaCorrente contaDoFulano = new ContaCorrente(new Pessoa("Fulano", 5425));
+        ContaCorrente contaDaCicrana = new ContaCorrente(new Pessoa("Cicrana", 2132));
 
         contaDoFulano.idBanco = 6;
 
@@ -47,6 +50,22 @@ public class Principal {
         System.out.println("saldo = " + contaDoFulano.getSaldo());
 
           // não poderá jamais ser modificado (constante)
+
+        Map<Integer, String> mapa = new HashMap<>();
+
+        // iterando por um mapa (pelas chaves)
+        for (Integer chave : mapa.keySet()) {
+            String valorArmazenado = mapa.get(chave);
+        }
+
+        // outro jeito: iterando pelos pares chave-valor (melhor do que o outro jeito)
+        for (Map.Entry<Integer, String> entry : mapa.entrySet()) {
+            Integer chave = entry.getKey();
+            String valorArmazenado = entry.getValue();
+        }
+
+        // este programa foi feito pela Olívia
+
     }
 
 }
